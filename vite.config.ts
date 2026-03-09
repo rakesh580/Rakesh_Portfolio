@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
+    const groqKey = env.GROQ_API_KEY || process.env.GROQ_API_KEY || '';
     return {
       base: '/Rakesh_Portfolio/',
       server: {
@@ -12,8 +13,8 @@ export default defineConfig(({ mode }) => {
       },
       plugins: [react()],
       define: {
-        'process.env.API_KEY': JSON.stringify(env.GROQ_API_KEY),
-        'process.env.GROQ_API_KEY': JSON.stringify(env.GROQ_API_KEY)
+        'process.env.API_KEY': JSON.stringify(groqKey),
+        'process.env.GROQ_API_KEY': JSON.stringify(groqKey)
       },
       resolve: {
         alias: {

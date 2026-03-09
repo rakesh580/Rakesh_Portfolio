@@ -30,6 +30,8 @@ jobs:
       - run: echo "GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}" > .env.local
 
       - run: npm run build
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
 
       - uses: actions/upload-pages-artifact@v3
         with:
