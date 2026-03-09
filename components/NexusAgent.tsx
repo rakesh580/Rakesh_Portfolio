@@ -43,7 +43,7 @@ const NexusAgent: React.FC<NexusAgentProps> = ({ matchData }) => {
     setIsLoading(true);
 
     try {
-      const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : '';
+      const apiKey = process.env.API_KEY || '';
       if (!apiKey) {
         throw new Error("API Key Missing");
       }

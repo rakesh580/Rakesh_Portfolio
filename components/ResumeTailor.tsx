@@ -22,7 +22,7 @@ const ResumeTailor: React.FC<ResumeTailorProps> = ({ onMatch }) => {
     setError(null);
 
     try {
-      const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : '';
+      const apiKey = process.env.API_KEY || '';
       if (!apiKey) {
         throw new Error("API Key Missing");
       }
