@@ -2,8 +2,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MatchData } from '../types';
 
-const GROQ_MODEL = 'llama-3.3-70b-versatile';
-const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+const HF_MODEL = 'mistralai/Mistral-7B-Instruct-v0.3';
+const HF_API_URL = `https://api-inference.huggingface.co/models/${HF_MODEL}/v1/chat/completions`;
 
 interface NexusAgentProps {
   matchData?: MatchData | null;
@@ -63,14 +63,14 @@ ${matchData ? `CURRENT CONTEXT: The user is analyzing Rakesh for a role that req
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 30000);
 
-      const response = await fetch(GROQ_API_URL, {
+      const response = await fetch(HF_API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
-          model: GROQ_MODEL,
+          model: HF_MODEL,
           messages: [
             { role: 'system', content: systemPrompt },
             { role: 'user', content: userMsg }
