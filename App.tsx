@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Cortex from './components/Cortex';
@@ -8,11 +8,21 @@ import Lab from './components/Lab';
 import Uplink from './components/Uplink';
 import NexusAgent from './components/NexusAgent';
 import ResumeTailor from './components/ResumeTailor';
-import { MatchData } from './types';
+import CaseStudyModal from './components/CaseStudyModal';
+import { PROJECTS } from './constants';
+import { MatchData, Project } from './types';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('nexus');
   const [matchData, setMatchData] = useState<MatchData | null>(null);
+  const [caseStudyProject, setCaseStudyProject] = useState<Project | null>(null);
+
+  const openCaseStudy = useCallback((projectId: string) => {
+    const project = PROJECTS.find(p => p.id === projectId);
+    if (project?.caseStudy) setCaseStudyProject(project);
+  }, []);
+
+  const closeCaseStudy = useCallback(() => setCaseStudyProject(null), []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -54,7 +64,7 @@ const App: React.FC = () => {
         <section id="cortex" className="py-32 px-6">
           <div className="max-w-7xl mx-auto">
             <ResumeTailor onMatch={setMatchData} />
-            <Cortex matchData={matchData} />
+            <Cortex matchData={matchData} onOpenCaseStudy={openCaseStudy} />
           </div>
         </section>
 
@@ -63,7 +73,7 @@ const App: React.FC = () => {
         </section>
 
         <section id="lab" className="py-32 px-6 bg-white/[0.02]">
-          <Lab />
+          <Lab onOpenCaseStudy={openCaseStudy} />
         </section>
 
         <section id="uplink" className="py-32 px-6">
@@ -71,6 +81,7 @@ const App: React.FC = () => {
         </section>
       </main>
 
+      <CaseStudyModal project={caseStudyProject} onClose={closeCaseStudy} />
       <NexusAgent matchData={matchData} />
 
       <footer className="py-12 border-t border-white/5 text-center text-gray-500 text-xs font-mono uppercase tracking-widest">

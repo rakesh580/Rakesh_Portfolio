@@ -13,6 +13,23 @@ export interface DiagramEdge {
   label?: string;
 }
 
+export interface CaseStudySection {
+  id: string;
+  label: string;
+  icon: string;
+  content: {
+    heading: string;
+    paragraphs: string[];
+    highlights?: { label: string; value: string; icon: string }[];
+    steps?: { step: number; title: string; description: string }[];
+  };
+}
+
+export interface CaseStudy {
+  tagline: string;
+  sections: CaseStudySection[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -29,6 +46,7 @@ export interface Project {
     nodes: DiagramNode[];
     edges: DiagramEdge[];
   };
+  caseStudy?: CaseStudy;
 }
 
 export interface SkillNode {

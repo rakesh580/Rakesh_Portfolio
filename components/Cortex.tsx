@@ -5,9 +5,10 @@ import { MatchData } from '../types';
 
 interface CortexProps {
   matchData?: MatchData | null;
+  onOpenCaseStudy: (projectId: string) => void;
 }
 
-const Cortex: React.FC<CortexProps> = ({ matchData }) => {
+const Cortex: React.FC<CortexProps> = ({ matchData, onOpenCaseStudy }) => {
   const isSkillRelevant = (skill: string) => {
     if (!matchData) return false;
     return matchData.relevantSkills.some(rs => 
@@ -115,12 +116,27 @@ const Cortex: React.FC<CortexProps> = ({ matchData }) => {
                   </div>
 
                   <div className="pt-4 flex gap-4">
-                    <button className="flex-1 h-10 bg-mint text-void font-bold text-xs uppercase tracking-widest rounded-sm hover:bg-white transition-colors">
-                      Open Case Study
-                    </button>
-                    <button className="size-10 border border-white/20 text-white rounded-sm flex items-center justify-center hover:border-mint transition-all">
-                        <span className="material-symbols-outlined text-[18px]">account_tree</span>
-                    </button>
+                    {project.caseStudy ? (
+                      <button
+                        onClick={() => onOpenCaseStudy(project.id)}
+                        className="flex-1 h-10 bg-mint text-void font-bold text-xs uppercase tracking-widest rounded-sm hover:bg-white transition-colors flex items-center justify-center gap-2"
+                      >
+                        <span className="material-symbols-outlined text-sm">menu_book</span>
+                        Open Case Study
+                      </button>
+                    ) : (
+                      <button className="flex-1 h-10 bg-white/10 text-gray-500 font-bold text-xs uppercase tracking-widest rounded-sm cursor-not-allowed">
+                        Case Study Locked
+                      </button>
+                    )}
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="size-10 border border-white/20 text-white rounded-sm flex items-center justify-center hover:border-mint hover:bg-mint hover:text-void transition-all"
+                    >
+                      <span className="material-symbols-outlined text-[18px]">open_in_new</span>
+                    </a>
                   </div>
                 </div>
               </div>
