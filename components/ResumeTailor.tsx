@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { PROJECTS, TIMELINE } from '../constants';
 import { MatchData } from '../types';
 
-const HF_MODEL = 'mistralai/Mistral-7B-Instruct-v0.3';
-const HF_API_URL = `https://api-inference.huggingface.co/models/${HF_MODEL}/v1/chat/completions`;
+const GROQ_MODEL = 'llama-3.3-70b-versatile';
+const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 interface ResumeTailorProps {
   onMatch: (data: MatchData | null) => void;
@@ -42,14 +42,14 @@ Return ONLY a valid JSON object (no markdown, no code fences) with exactly these
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 30000);
 
-      const response = await fetch(HF_API_URL, {
+      const response = await fetch(GROQ_API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
-          model: HF_MODEL,
+          model: GROQ_MODEL,
           messages: [
             { role: 'system', content: 'You are a JSON-only response bot. You must respond with valid JSON and nothing else. No markdown, no code fences, no explanations.' },
             { role: 'user', content: prompt }
