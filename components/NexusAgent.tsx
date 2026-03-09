@@ -2,8 +2,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MatchData } from '../types';
 
-const HF_MODEL = 'mistralai/Mistral-7B-Instruct-v0.3';
-const HF_API_URL = `https://api-inference.huggingface.co/models/${HF_MODEL}/v1/chat/completions`;
+const GROQ_MODEL = 'llama-3.3-70b-versatile';
+const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 interface NexusAgentProps {
   matchData?: MatchData | null;
@@ -60,14 +60,17 @@ Key details about him:
 - Keep responses concise (under 3 sentences).
 ${matchData ? `CURRENT CONTEXT: The user is analyzing Rakesh for a role that requires ${matchData.relevantSkills.join(', ')}. Focus on these skills.` : ''}`;
 
-      const response = await fetch(HF_API_URL, {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+      const response = await fetch(GROQ_API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
-          model: HF_MODEL,
+          model: GROQ_MODEL,
           messages: [
             { role: 'system', content: systemPrompt },
             { role: 'user', content: userMsg }
@@ -75,7 +78,9 @@ ${matchData ? `CURRENT CONTEXT: The user is analyzing Rakesh for a role that req
           max_tokens: 256,
           temperature: 0.7,
         }),
+        signal: controller.signal,
       });
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         const errorBody = await response.text();
@@ -90,7 +95,9 @@ ${matchData ? `CURRENT CONTEXT: The user is analyzing Rakesh for a role that req
       console.error("AI Error:", err);
       const errorMsg = err instanceof Error && err.message === "API Key Missing"
         ? "Uplink key not found. Please ensure your environment is configured."
-        : "Error accessing cortex nodes. Connection timeout.";
+        : err instanceof DOMException && err.name === 'AbortError'
+        ? "Request timed out. Please try again."
+        : "Error accessing cortex nodes. Connection interrupted.";
       setMessages(prev => [...prev, { role: 'agent', text: errorMsg }]);
     } finally {
       setIsLoading(false);
@@ -107,7 +114,7 @@ ${matchData ? `CURRENT CONTEXT: The user is analyzing Rakesh for a role that req
               <div className="size-2 bg-mint rounded-full animate-pulse"></div>
               <span className="text-[10px] font-bold text-mint uppercase tracking-widest">NEXUS_AGENT v1.1</span>
             </div>
-            <button onClick={() => setIsOpen(false)} className="text-gray-500 hover:text-white">
+            <button onClick={() => setIsOpen(false)} className="text-gray-500 hover:text-white" aria-label="Close chat">
               <span className="material-symbols-outlined text-sm">close</span>
             </button>
           </div>
@@ -151,6 +158,7 @@ ${matchData ? `CURRENT CONTEXT: The user is analyzing Rakesh for a role that req
                 onClick={handleSend}
                 disabled={isLoading}
                 className="bg-mint text-void p-2 rounded-sm hover:bg-white transition-colors"
+                aria-label="Send message"
               >
                 <span className="material-symbols-outlined text-sm">send</span>
               </button>
@@ -160,6 +168,7 @@ ${matchData ? `CURRENT CONTEXT: The user is analyzing Rakesh for a role that req
       ) : (
         <button
           onClick={() => setIsOpen(true)}
+          aria-label="Open Nexus Agent chat"
           className={`size-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all group ${
             matchData ? 'bg-laser text-void animate-pulse' : 'bg-mint text-void'
           }`}

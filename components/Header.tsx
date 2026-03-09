@@ -45,7 +45,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
           </span>
         </div>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
           {navItems.map((item) => (
             <a
               key={item.id}

@@ -51,6 +51,31 @@ export const PROJECTS: Project[] = [
         { from: 'f', to: 'rd', label: 'Real-time Sync' }
       ]
     }
+  },
+  {
+    id: 'edgeticker',
+    title: 'EdgeTicker',
+    mission: 'Delivering explainable, AI-driven stock signals with real-time technical and valuation analysis.',
+    description: 'Built a full-stack AI-powered stock intelligence platform combining technical indicators, valuation metrics, risk modeling, and an LLM-based Market Copilot for actionable BUY/HOLD/AVOID signals.',
+    tech: ['React', 'Vite', 'FastAPI', 'Python', 'OpenAI', 'REST API'],
+    github: 'https://github.com/rakesh580/edgeticker',
+    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1200&auto=format&fit=crop',
+    impact: 'Explainable stock signals',
+    architecture: 'Modular React frontend with FastAPI backend orchestrating financial data ingestion, indicator computation, signal scoring, and LLM-powered copilot with context-grounded prompts.',
+    metrics: ['RSI/SMA-based signal engine', 'Risk-reward modeling', 'LLM Market Copilot', 'Multi-timeframe analysis'],
+    diagram: {
+      nodes: [
+        { id: 'ui', label: 'React Dashboard', type: 'client', x: 50, y: 150 },
+        { id: 'api', label: 'FastAPI Engine', type: 'server', x: 250, y: 150 },
+        { id: 'fin', label: 'Financial APIs', type: 'external', x: 450, y: 50 },
+        { id: 'llm', label: 'LLM Copilot', type: 'llm', x: 450, y: 250 }
+      ],
+      edges: [
+        { from: 'ui', to: 'api', label: 'REST' },
+        { from: 'api', to: 'fin', label: 'Market Data' },
+        { from: 'api', to: 'llm', label: 'Context Injection' }
+      ]
+    }
   }
 ];
 

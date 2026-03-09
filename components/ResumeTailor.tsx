@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { PROJECTS, TIMELINE } from '../constants';
 import { MatchData } from '../types';
 
-const HF_MODEL = 'mistralai/Mistral-7B-Instruct-v0.3';
-const HF_API_URL = `https://api-inference.huggingface.co/models/${HF_MODEL}/v1/chat/completions`;
+const GROQ_MODEL = 'llama-3.3-70b-versatile';
+const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 interface ResumeTailorProps {
   onMatch: (data: MatchData | null) => void;
@@ -36,17 +36,20 @@ JOB DESCRIPTION: ${jd}
 
 Return ONLY a valid JSON object (no markdown, no code fences) with exactly these keys:
 1. "relevantSkills": String array of technical keywords from the JD that Rakesh possesses.
-2. "projectScores": Object mapping project IDs ("weather-ai", "rchat") to a match percentage (0-100) based on relevance to the JD.
+2. "projectScores": Object mapping project IDs ("weather-ai", "rchat", "edgeticker") to a match percentage (0-100) based on relevance to the JD.
 3. "summary": A 2-sentence explanation of why Rakesh is a fit for this specific role.`;
 
-      const response = await fetch(HF_API_URL, {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+      const response = await fetch(GROQ_API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
-          model: HF_MODEL,
+          model: GROQ_MODEL,
           messages: [
             { role: 'system', content: 'You are a JSON-only response bot. You must respond with valid JSON and nothing else. No markdown, no code fences, no explanations.' },
             { role: 'user', content: prompt }
@@ -54,7 +57,9 @@ Return ONLY a valid JSON object (no markdown, no code fences) with exactly these
           max_tokens: 512,
           temperature: 0.3,
         }),
+        signal: controller.signal,
       });
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         const errorBody = await response.text();
@@ -71,7 +76,18 @@ Return ONLY a valid JSON object (no markdown, no code fences) with exactly these
         throw new Error("Could not parse AI response");
       }
 
-      const data: MatchData = JSON.parse(jsonMatch[0]);
+      const parsed = JSON.parse(jsonMatch[0]);
+
+      // Validate the response has the expected MatchData shape
+      if (!Array.isArray(parsed.relevantSkills) || typeof parsed.projectScores !== 'object' || typeof parsed.summary !== 'string') {
+        throw new Error("Invalid response structure");
+      }
+
+      const data: MatchData = {
+        relevantSkills: parsed.relevantSkills,
+        projectScores: parsed.projectScores,
+        summary: parsed.summary,
+      };
       onMatch(data);
       setShowInput(false);
     } catch (err) {
@@ -79,6 +95,8 @@ Return ONLY a valid JSON object (no markdown, no code fences) with exactly these
       setError(
         err instanceof Error && err.message === "API Key Missing"
           ? "API key not configured. Please check your environment setup."
+          : err instanceof DOMException && err.name === 'AbortError'
+          ? "Request timed out. Please try again."
           : "Analysis failed. Please try again or refine your input."
       );
     } finally {
@@ -103,7 +121,7 @@ Return ONLY a valid JSON object (no markdown, no code fences) with exactly these
         <div className="glass-panel p-6 rounded-md border-mint/30 animate-in fade-in slide-in-from-top-4">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xs font-mono font-bold text-mint tracking-[0.3em] uppercase">Job Description Uplink</h3>
-            <button onClick={() => { setShowInput(false); setError(null); onMatch(null); }} className="text-gray-500 hover:text-white">
+            <button onClick={() => { setShowInput(false); setError(null); onMatch(null); }} className="text-gray-500 hover:text-white" aria-label="Close resume tailor">
               <span className="material-symbols-outlined text-sm">close</span>
             </button>
           </div>

@@ -96,7 +96,7 @@ const Cortex: React.FC<CortexProps> = ({ matchData }) => {
                 </div>
 
                 {/* Hover Overlay for Architecture */}
-                <div className="absolute inset-0 bg-void/95 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center p-8 space-y-6">
+                <div className="absolute inset-0 bg-void/95 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col p-8 space-y-6 overflow-y-auto custom-scrollbar">
                   <div className="space-y-2">
                     <div className="text-mint font-mono font-bold text-[10px] tracking-[0.3em] uppercase">SYSTEM_ARCHITECTURE</div>
                     <p className="text-gray-300 text-sm leading-relaxed">{project.architecture}</p>

@@ -4,7 +4,7 @@
 
 # Rakesh Portfolio
 
-A high-performance engineering portfolio built with React, TypeScript, and Vite. Features an AI-powered resume tailor and chatbot agent powered by Mistral-7B.
+A high-performance engineering portfolio built with React, TypeScript, and Vite. Features an AI-powered resume tailor and chatbot agent powered by Groq (LLaMA-3.3-70B).
 
 ## Run Locally
 
@@ -12,6 +12,6 @@ A high-performance engineering portfolio built with React, TypeScript, and Vite.
 
 1. Install dependencies:
    `npm install`
-2. Set the `MISTRAL_API_KEY` in [.env.local](.env.local) to your HuggingFace API key
+2. Set the `GROQ_API_KEY` in [.env.local](.env.local) to your Groq API key
 3. Run the app:
    `npm run dev`

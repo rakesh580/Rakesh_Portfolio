@@ -28,13 +28,6 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="relative z-10 text-center flex flex-col items-center gap-8 max-w-5xl">
-        <div className="glass-panel px-4 py-1.5 rounded-full border border-mint/20 flex items-center gap-2 animate-bounce">
-          <div className="size-1.5 bg-mint rounded-full animate-pulse shadow-[0_0_8px_#00FF88]"></div>
-          <span className="text-[10px] font-mono font-bold tracking-widest text-gray-300 uppercase">
-          <span className="text-mint">North Carolina A&T State University</span> (GPA 3.9)
-          </span>
-        </div>
-
         <h1 className="font-mono text-5xl md:text-8xl font-bold tracking-tighter text-white leading-none">
           <span className="inline-block min-h-[1em]">{displayText}</span>
           <span className="animate-pulse text-mint">_</span>
