@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const Hero: React.FC = () => {
   const [displayText, setDisplayText] = useState('');
-  const fullText = "Constructing Intelligence";
+  const fullText = "Software Engineer";
   
   useEffect(() => {
     let i = 0;
@@ -33,9 +33,12 @@ const Hero: React.FC = () => {
           <span className="animate-pulse text-mint">_</span>
         </h1>
 
-        <p className="text-gray-400 text-lg md:text-xl font-light max-w-3xl leading-relaxed">
-          <span className="text-white font-bold">Rakesh Chintanippu.</span> Software Engineer @ <span className="text-mint">Cruxito Tech Solutions</span>. 
-          Specializing in Full Stack Development, Cloud-Native Microservices and Real-time GenAI Applications. Based in Charlotte, NC.
+        <p className="text-white text-lg md:text-2xl font-mono font-bold tracking-wide">
+          Android &amp; Mobile Engineer · Full-Stack AI Builder
+        </p>
+
+        <p className="text-gray-400 text-base md:text-lg font-light max-w-3xl leading-relaxed">
+          Building production-grade Android applications for large-scale user bases. <span className="text-mint">Kotlin</span> · <span className="text-mint">Jetpack Compose</span> · <span className="text-mint">MVVM</span> · <span className="text-mint">REST APIs</span>
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 mt-8">

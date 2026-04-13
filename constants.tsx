@@ -494,26 +494,46 @@ export const TIMELINE: TimelineEvent[] = [
     role: 'Software Engineer',
     company: 'Cruxito Tech Solutions LLC',
     location: 'USA',
-    description: 'Building RESTful APIs for scalable microservices and analytics solutions. Optimizing data exchange reliability and implementing robust auth protocols.',
-    stack: ['Python', 'FastAPI', 'Flask', 'Java Spring Boot', 'AWS (EKS, Lambda)', 'Docker'],
-    impact: ['30% increase in data exchange reliability', '25% reduction in access-related issues']
+    description: 'Building production-grade Android and iOS applications for large-scale mobile platforms.',
+    stack: ['Kotlin', 'Jetpack Compose', 'Swift', 'SwiftUI', 'MVVM', 'REST APIs', 'JUnit', 'Espresso', 'XCTest'],
+    impact: [
+      'Developed Android features using Kotlin and Jetpack Compose with MVVM architecture serving 1M+ active users',
+      'Built iOS modules in Swift and SwiftUI, contributing to RESTful API integration via URLSession for data synchronization',
+      'Partnered with Product, Design, and Backend teams to translate UX requirements into performant mobile code',
+      'Implemented unit and UI tests using JUnit, Espresso, and XCTest achieving 85 percent code coverage',
+      'Optimized app performance through lazy loading and memory management reducing crash rates by 40 percent',
+      'Participated in architecture reviews communicating engineering trade-offs to cross-functional stakeholders'
+    ]
   },
   {
     period: 'AUG 2022 – MAY 2024',
     role: 'Graduate Research Assistant',
     company: 'North Carolina A&T State University',
-    location: 'Greensboro, NC',
-    description: 'Developed end-to-end applications serving 5K+ users. Researched federated learning and IoT data aggregation.',
-    stack: ['React.js', 'Python', 'FastAPI', 'PostgreSQL', 'TensorFlow'],
-    impact: ['Served 5K+ real-time users', 'Outstanding Graduate Research Award (2023)']
+    location: 'NC, USA',
+    description: 'Built Android research prototypes and conducted research on secure IoT data aggregation.',
+    stack: ['Kotlin', 'MVVM', 'REST APIs', 'PostgreSQL', 'JUnit', 'TDD', 'Agile'],
+    impact: [
+      'Built Android research prototypes using Kotlin and MVVM pattern for interactive data visualization on an NSF-funded project',
+      'Integrated RESTful APIs with mobile clients parsing JSON responses from PostgreSQL-backed services',
+      'Wrote comprehensive unit and integration tests reducing data processing bugs by 50 percent through TDD',
+      'Collaborated in Agile ceremonies including stand-ups, sprint planning, and retrospectives',
+      'Published two peer-reviewed research papers on secure and private IoT data aggregation',
+      'Received Outstanding Graduate Research Award 2023'
+    ]
   },
   {
     period: 'JUN 2020 – JUL 2022',
     role: 'Software Engineer',
     company: 'Capgemini Technology Services',
     location: 'Hyderabad, India',
-    description: 'Developed enterprise auth flows and integration workflows. Implemented CI/CD pipelines to reduce release bottlenecks.',
-    stack: ['Node.js', 'React', 'Azure', 'Jenkins', 'Docker', 'OAuth2', 'JWT'],
-    impact: ['Improved system reliability through new workflows', 'Reduced release bottlenecks via Jenkins/Docker']
+    description: 'Developed Android application modules and backend integrations for enterprise clients.',
+    stack: ['Kotlin', 'MVVM', 'Retrofit', 'REST APIs', 'Jenkins', 'Git', 'CI/CD'],
+    impact: [
+      'Developed Android application modules using Kotlin with MVVM architecture for enterprise clients',
+      'Designed and consumed RESTful APIs using Retrofit improving data sync efficiency by 60 percent',
+      'Optimized database queries and local caching strategies reducing app response times by 30 percent',
+      'Collaborated with cross-functional teams to translate business requirements into intuitive mobile interfaces',
+      'Maintained CI/CD pipelines via Jenkins and Git ensuring reliable builds and continuous delivery'
+    ]
   }
 ];
