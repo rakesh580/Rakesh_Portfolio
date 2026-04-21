@@ -1,6 +1,29 @@
 
 import { Project, TimelineEvent } from './types';
 
+/**
+ * Single source of truth for contact info. Imported by the Uplink panel,
+ * the NexusAgent system prompt, and any future resume-download logic so
+ * there's exactly one place to update phone / email / handles.
+ */
+export const CONTACT = {
+  name: 'Rakesh Chintanippu',
+  title: 'Software Engineer · Full-Stack · AI Platforms',
+  email: 'rakeshswe2026@gmail.com',
+  phone: '(980) 666-8179',
+  github: 'https://github.com/rakesh580',
+  githubHandle: 'rakesh580',
+  linkedin: 'https://www.linkedin.com/in/rakesh-c-231334329/',
+  linkedinHandle: 'rakesh-c',
+  portfolio: 'https://rakesh580.github.io/Rakesh_Portfolio/',
+  availability: 'Open to Full-Stack, AI Platform, and Cloud Engineering roles',
+  company: 'Cruxito Tech Solutions LLC',
+  education: {
+    masters: { school: 'North Carolina A&T State University', gpa: '3.9/4.0', year: '2024' },
+    bachelors: { school: 'Vidya Jyothi Institute of Technology (VJIT), India', gpa: '3.8/4.0', year: '2022' },
+  },
+};
+
 export const PROJECTS: Project[] = [
   {
     id: 'weather-ai',
