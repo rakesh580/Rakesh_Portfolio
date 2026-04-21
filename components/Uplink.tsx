@@ -3,40 +3,16 @@ import React, { useState } from 'react';
 
 const Uplink: React.FC = () => {
   const [copied, setCopied] = useState(false);
-  const [generating, setGenerating] = useState(false);
   const email = "rakeshswe2026@gmail.com";
+
+  // Vite respects import.meta.env.BASE_URL for GitHub Pages subpath deploys.
+  // Falls back to root in dev.
+  const RESUME_URL = `${import.meta.env.BASE_URL}Rakesh_Chintanippu_Resume.pdf`;
 
   const copyEmail = () => {
     navigator.clipboard.writeText(email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
-
-  const downloadResume = async () => {
-    if (generating) return;
-    setGenerating(true);
-    try {
-      // Dynamic import keeps @react-pdf/renderer out of the initial bundle.
-      const [{ pdf }, ResumePDFModule] = await Promise.all([
-        import('@react-pdf/renderer'),
-        import('./ResumePDF'),
-      ]);
-      const ResumePDF = ResumePDFModule.default;
-      const blob = await pdf(<ResumePDF />).toBlob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'Rakesh_Chintanippu_Resume.pdf';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    } catch (err) {
-      console.error('PDF generation failed:', err);
-      alert('PDF generation failed. Please try again or contact me directly.');
-    } finally {
-      setGenerating(false);
-    }
   };
 
   return (
@@ -125,16 +101,16 @@ const Uplink: React.FC = () => {
               </div>
 
               <div className="flex flex-col md:flex-row gap-3">
-                <button
-                  onClick={downloadResume}
-                  disabled={generating}
-                  className="flex items-center justify-center gap-3 px-6 py-3 bg-mint text-void rounded-sm font-mono font-bold text-xs tracking-widest uppercase hover:bg-white transition-colors disabled:opacity-60 disabled:cursor-wait"
+                <a
+                  href={RESUME_URL}
+                  download="Rakesh_Chintanippu_Resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-center gap-3 px-6 py-3 bg-mint text-void rounded-sm font-mono font-bold text-xs tracking-widest uppercase hover:bg-white transition-colors"
                 >
-                  <span className="material-symbols-outlined text-base">
-                    {generating ? 'hourglass_top' : 'download'}
-                  </span>
-                  {generating ? 'BUILDING_PDF...' : 'DOWNLOAD_RESUME'}
-                </button>
+                  <span className="material-symbols-outlined text-base">download</span>
+                  DOWNLOAD_RESUME
+                </a>
                 <a
                   href="#pulse"
                   onClick={(e) => {
