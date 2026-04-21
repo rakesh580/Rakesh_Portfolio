@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import Cortex from './components/Cortex';
 import Timeline from './components/Timeline';
 import Lab from './components/Lab';
+import Pulse from './components/Pulse';
 import Uplink from './components/Uplink';
 import NexusAgent from './components/NexusAgent';
 import ResumeTailor from './components/ResumeTailor';
@@ -36,7 +37,7 @@ const App: React.FC = () => {
       { threshold: 0.3, rootMargin: '-80px 0px 0px 0px' }
     );
 
-    const sections = ['nexus', 'cortex', 'timeline', 'lab', 'uplink'];
+    const sections = ['nexus', 'cortex', 'timeline', 'lab', 'pulse', 'uplink'];
     sections.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
@@ -74,6 +75,10 @@ const App: React.FC = () => {
 
         <section id="lab" className="py-32 px-6 bg-white/[0.02]">
           <Lab onOpenCaseStudy={openCaseStudy} />
+        </section>
+
+        <section id="pulse" className="py-32 px-6">
+          <Pulse />
         </section>
 
         <section id="uplink" className="py-32 px-6">

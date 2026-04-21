@@ -46,7 +46,9 @@ const Lab: React.FC<LabProps> = ({ onOpenCaseStudy }) => {
             <div className="relative aspect-video overflow-hidden">
               <img
                 src={project.image}
-                alt={project.title}
+                alt={`${project.title} — ${project.mission}`}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 scale-100 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-void to-transparent opacity-80"></div>
@@ -125,8 +127,9 @@ const Lab: React.FC<LabProps> = ({ onOpenCaseStudy }) => {
                         edges={expandedProject.diagram.edges}
                       />
                     ) : (
-                      <div className="h-[400px] flex items-center justify-center text-gray-500 font-mono text-xs italic">
-                        DIAGRAM_NODE_NOT_FOUND
+                      <div className="h-[400px] flex flex-col items-center justify-center text-gray-500 font-mono text-xs italic gap-2">
+                        <span className="material-symbols-outlined text-gray-600 text-3xl">schema</span>
+                        Architecture diagram coming soon.
                       </div>
                     )}
                   </div>

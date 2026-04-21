@@ -34,8 +34,8 @@ const Hero: React.FC = () => {
         </h1>
 
         <p className="text-gray-400 text-lg md:text-xl font-light max-w-3xl leading-relaxed">
-          <span className="text-white font-bold">Rakesh Chintanippu.</span> Software Engineer @ <span className="text-mint">Cruxito Tech Solutions</span>. 
-          Specializing in Full Stack Development, Cloud-Native Microservices and Real-time GenAI Applications.
+          <span className="text-white font-bold">Rakesh Chintanippu.</span> Software Engineer @ <span className="text-mint">Cruxito Tech Solutions</span>.
+          Building production-grade <span className="text-white">AI platforms</span>, <span className="text-white">real-time systems</span>, and <span className="text-white">cloud-native microservices</span> — with 5+ shipped case studies spanning LLM orchestration, RAG pipelines, and full-stack engineering.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 mt-8">

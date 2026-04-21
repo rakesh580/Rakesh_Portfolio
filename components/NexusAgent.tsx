@@ -9,9 +9,74 @@ interface NexusAgentProps {
   matchData?: MatchData | null;
 }
 
+/**
+ * Rule-based fallback responder. Activates when the Groq API key is missing
+ * or the live LLM call fails so the agent never shows a broken / empty state.
+ * Maps common question keywords to grounded answers drawn from the portfolio
+ * data. The user sees a subtle "offline mode" indicator in the header.
+ */
+const offlineReply = (msg: string): string => {
+  const q = msg.toLowerCase();
+  const hit = (...kws: string[]) => kws.some(k => q.includes(k));
+
+  if (hit('hi', 'hello', 'hey', 'yo ', 'greet')) {
+    return "Hey! I'm Nexus Agent running in offline mode. Ask about Rakesh's projects, skills, experience, or how to reach him.";
+  }
+  if (hit('who', 'about rakesh', 'tell me about', 'yourself', 'background')) {
+    return "Rakesh Chintanippu is a Software Engineer at Cruxito Tech Solutions — specializing in full-stack engineering, AI platforms (LLMs, RAG, agents), and cloud-native microservices. MS in CS from NC A&T (3.9/4.0), BS from VJIT India (3.8/4.0).";
+  }
+  if (hit('contact', 'email', 'reach', 'hire', 'available')) {
+    return "Email rakeshswe2026@gmail.com, phone (980) 666-8179. He's open to Full-Stack, AI Platform, and Cloud Engineering roles. GitHub: github.com/rakesh580.";
+  }
+  if (hit('wellby', 'health')) {
+    return "Wellby is an enterprise AI health companion with 110+ API endpoints, Gemma 4 + Groq multi-provider routing, Medical RAG, vision meal scanning, and TensorFlow.js anomaly detection. Live on GCP Cloud Run.";
+  }
+  if (hit('collective brain', 'knowledge', 'rag')) {
+    return "Collective Brain is a team knowledge platform: 7 source connectors (Git, MD, PDF, Slack, Discord), ChromaDB vectors, LangGraph agents, and real-time WebSocket rooms. Stack: React 19, FastAPI, PostgreSQL, Redis.";
+  }
+  if (hit('skypulse', 'weather')) {
+    return "SkyPulse is an AI weather intelligence platform with 20+ FastAPI endpoints, LLaMA 3.3 70B chat, activity optimizer, health journal, journey corridor, and microclimate analysis. Live at weather-app-s3vf.onrender.com.";
+  }
+  if (hit('edgeticker', 'stock', 'trading', 'market')) {
+    return "EdgeTicker is a stock intelligence platform with backtested BUY/HOLD/AVOID signals, a streaming Market Copilot (Mistral-7B via SSE), multi-timeframe conflict alerts, and watchlist intelligence. React 19 + FastAPI.";
+  }
+  if (hit('rchat', 'chat')) {
+    return "Rchat.ai is a real-time AI chat platform with WebSockets, JWT/OAuth2 auth, Redis pub/sub for multi-process fan-out, and PostgreSQL persistence. FastAPI backend, React frontend.";
+  }
+  if (hit('project', 'built', 'work', 'case study', 'portfolio')) {
+    return "Rakesh has 5 flagship projects: Wellby (AI health), Collective Brain (RAG + agents), SkyPulse (weather AI), EdgeTicker (stock intel), and Rchat.ai (real-time chat). Scroll to THE_CORTEX for full case studies.";
+  }
+  if (hit('skill', 'stack', 'tech', 'language', 'framework')) {
+    return "Core stack: Python (FastAPI, Flask, Django), TypeScript / React 19, Java (Spring Boot), Node / Express, Postgres, Redis, ChromaDB, Docker, AWS (EKS, Lambda), GCP Cloud Run, LangGraph, LLMs (Groq, Gemma 4, LLaMA, Mistral).";
+  }
+  if (hit('experience', 'job', 'role', 'work history', 'career')) {
+    return "Current: Software Engineer at Cruxito Tech Solutions (May 2024–present). Prior: Graduate Research Assistant at NC A&T (Aug 2022–May 2024), Software Engineer at Capgemini (Jun 2020–Jul 2022). Scroll to THE_TIMELINE for details.";
+  }
+  if (hit('education', 'degree', 'school', 'university', 'gpa')) {
+    return "MS Computer Science — North Carolina A&T State University (GPA 3.9/4.0). BS — VJIT, India (GPA 3.8/4.0). Outstanding Graduate Research Award (2023).";
+  }
+  if (hit('ai', 'llm', 'machine learning', 'ml', 'genai')) {
+    return "Rakesh ships production AI systems — RAG with ChromaDB, agentic workflows with LangGraph, multi-provider routing (Groq / Gemma 4 / OpenAI / Anthropic), vector search, SSE streaming, and on-device ML with TensorFlow.js.";
+  }
+  if (hit('location', 'where', 'based')) {
+    return "Based in the United States, open to remote or on-site roles.";
+  }
+  if (hit('resume', 'cv', 'pdf', 'download')) {
+    return "Use the DOWNLOAD_RESUME button in THE_UPLINK section at the bottom of the page to get a PDF.";
+  }
+  if (hit('github', 'code', 'repo')) {
+    return "GitHub: github.com/rakesh580 — public repos include SkyPulse (Weather_App), Rchat.ai, Collective Brain, and the portfolio source itself.";
+  }
+  if (hit('linkedin')) {
+    return "LinkedIn: linkedin.com/in/rakesh-c-231334329";
+  }
+  return "I'm in offline demo mode right now. Try asking about Rakesh's projects (Wellby, Collective Brain, SkyPulse, EdgeTicker, Rchat.ai), skills, experience, or contact info.";
+};
+
 const NexusAgent: React.FC<NexusAgentProps> = ({ matchData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
+  const [isOfflineMode, setIsOfflineMode] = useState(false);
   const [messages, setMessages] = useState<{ role: 'user' | 'agent'; text: string }[]>([
     { role: 'agent', text: 'Nexus Agent initialized. How can I assist you with Rakesh\'s portfolio today?' }
   ]);
@@ -45,7 +110,12 @@ const NexusAgent: React.FC<NexusAgentProps> = ({ matchData }) => {
     try {
       const apiKey = process.env.API_KEY || '';
       if (!apiKey) {
-        throw new Error("API Key Missing");
+        // Graceful demo-mode fallback — no broken chat.
+        setIsOfflineMode(true);
+        await new Promise(r => setTimeout(r, 350));
+        setMessages(prev => [...prev, { role: 'agent', text: offlineReply(userMsg) }]);
+        setIsLoading(false);
+        return;
       }
 
       const systemPrompt = `You are "Nexus Agent", an advanced AI representative for Rakesh Chintanippu.
@@ -128,12 +198,9 @@ ${matchData ? `CURRENT CONTEXT: The user is analyzing Rakesh for a role that req
       setMessages(prev => [...prev, { role: 'agent', text }]);
     } catch (err) {
       console.error("AI Error:", err);
-      const errorMsg = err instanceof Error && err.message === "API Key Missing"
-        ? "Uplink key not found. Please ensure your environment is configured."
-        : err instanceof DOMException && err.name === 'AbortError'
-        ? "Request timed out. Please try again."
-        : "Error accessing cortex nodes. Connection interrupted.";
-      setMessages(prev => [...prev, { role: 'agent', text: errorMsg }]);
+      // Live API failed — fall back to offline responder so the chat never feels broken.
+      setIsOfflineMode(true);
+      setMessages(prev => [...prev, { role: 'agent', text: offlineReply(userMsg) }]);
     } finally {
       setIsLoading(false);
     }
@@ -146,8 +213,10 @@ ${matchData ? `CURRENT CONTEXT: The user is analyzing Rakesh for a role that req
           {/* Header */}
           <div className="bg-white/5 p-4 border-b border-white/10 flex justify-between items-center">
             <div className="flex items-center gap-2">
-              <div className="size-2 bg-mint rounded-full animate-pulse"></div>
-              <span className="text-[10px] font-bold text-mint uppercase tracking-widest">NEXUS_AGENT v1.1</span>
+              <div className={`size-2 rounded-full animate-pulse ${isOfflineMode ? 'bg-yellow-400' : 'bg-mint'}`}></div>
+              <span className={`text-[10px] font-bold uppercase tracking-widest ${isOfflineMode ? 'text-yellow-400' : 'text-mint'}`}>
+                NEXUS_AGENT {isOfflineMode ? '// OFFLINE_DEMO' : 'v1.1'}
+              </span>
             </div>
             <button onClick={() => setIsOpen(false)} className="text-gray-500 hover:text-white" aria-label="Close chat">
               <span className="material-symbols-outlined text-sm">close</span>
