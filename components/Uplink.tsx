@@ -41,7 +41,7 @@ const Uplink: React.FC = () => {
               <br />
               &nbsp;&nbsp;"name": "Rakesh Chintanippu",
               <br />
-              &nbsp;&nbsp;"phone": "(615) 479-8243",
+              &nbsp;&nbsp;"phone": "(980) 666-8179",
               <br />
               &nbsp;&nbsp;"status": "Available for Full-Stack Python & AI Roles",
               <br />
