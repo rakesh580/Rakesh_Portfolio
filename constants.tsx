@@ -485,6 +485,153 @@ export const PROJECTS: Project[] = [
         }
       ]
     }
+  },
+  {
+    id: 'wellby',
+    title: 'Wellby — AI Health Companion',
+    mission: 'Unifying vitals, nutrition, medical AI, and gamified wellness into one enterprise-grade health platform powered by a multi-provider AI routing layer.',
+    description: 'An AI-powered health companion with 110+ API endpoints, 120+ React components, and 21 database models — featuring real-time vital monitoring with TensorFlow.js anomaly detection, AI symptom triage, multi-modal vision meal scanning, a 200+ drug interaction checker, Medical RAG, wearable integration, 14 AI companions, and deep gamification with XP, levels, streaks, and 28 trophies.',
+    tech: ['React 19', 'TypeScript 5.8', 'Express', 'Prisma', 'Google Gemma 4', 'Groq', 'OpenAI', 'Anthropic', 'TensorFlow.js', 'PostgreSQL', 'Stripe', 'GCP Cloud Run'],
+    link: 'https://wellby-production-773067923612.us-central1.run.app',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop',
+    impact: 'Enterprise AI health platform',
+    architecture: 'React 19 + TypeScript 5.8 PWA frontend with an Express + Prisma backend orchestrating a unified multi-provider AI routing system across Groq, Google Gemma 4 (31B Dense + 26B MoE), OpenAI, and Anthropic — with medical RAG via vector embeddings, real-time anomaly detection in TensorFlow.js, Stripe-powered premium tier, HIPAA-aligned encryption, and deployment to GCP Cloud Run.',
+    metrics: ['110+ API Endpoints', '120+ React Components', '21 DB Models', '14 AI Companions', '200+ Drug Database', 'Unified AI Model Routing', 'Gemma 4 (256K context)', 'HIPAA-Aligned Encryption'],
+    diagram: {
+      nodes: [
+        { id: 'ui', label: 'React 19 PWA', type: 'client', x: 50, y: 150 },
+        { id: 'api', label: 'Express + Prisma', type: 'server', x: 250, y: 150 },
+        { id: 'router', label: 'AI Model Router', type: 'llm', x: 450, y: 30 },
+        { id: 'rag', label: 'Medical RAG + Vectors', type: 'database', x: 450, y: 150 },
+        { id: 'wearable', label: 'Wearables + TF.js', type: 'external', x: 450, y: 270 }
+      ],
+      edges: [
+        { from: 'ui', to: 'api', label: 'REST + SSE' },
+        { from: 'api', to: 'router', label: 'Groq / Gemma 4 / GPT / Claude' },
+        { from: 'api', to: 'rag', label: 'Semantic Retrieval' },
+        { from: 'ui', to: 'wearable', label: 'Apple Watch / Fitbit / Garmin' }
+      ]
+    },
+    caseStudy: {
+      tagline: 'From fragmented health apps to one enterprise-grade AI companion — triage, nutrition, vitals, and gamified wellness, unified.',
+      sections: [
+        {
+          id: 'problem',
+          label: 'The Problem',
+          icon: 'error_outline',
+          content: {
+            heading: 'Health Tracking Is Fragmented and Un-Intelligent',
+            paragraphs: [
+              'The average health-conscious person juggles 5+ apps — one for vitals, another for nutrition, a third for workouts, a symptom checker, and a medication reminder. None of them talk to each other, and none bring an intelligent AI layer that understands your full context.',
+              'Meanwhile, real medical decisions demand nuance: is this chest pain a red flag? Does this new medication interact with my current prescription? Which of these restaurant menu items fits my calorie budget? Most consumer apps can\'t answer these questions with clinical rigor.'
+            ],
+            highlights: [
+              { label: 'App Fragmentation', value: 'Users juggle 5+ disconnected apps for vitals, nutrition, triage, and fitness', icon: 'apps' },
+              { label: 'No Clinical Reasoning', value: 'Consumer apps lack triage, drug interaction, and medical RAG capabilities', icon: 'medical_information' },
+              { label: 'No Adherence Mechanism', value: 'Health habits fail without gamification, companions, or real engagement', icon: 'psychology' },
+              { label: 'No Vision Intelligence', value: 'Users manually log meals — impossible to sustain at scale', icon: 'photo_camera' }
+            ]
+          }
+        },
+        {
+          id: 'solution',
+          label: 'The Solution',
+          icon: 'lightbulb',
+          content: {
+            heading: 'Wellby — One Platform, Every Health Dimension',
+            paragraphs: [
+              'Wellby unifies real-time vital monitoring, AI symptom triage, drug interaction checking, multi-modal vision nutrition analysis, medical RAG, and gamified habit-building into a single progressive web app — all orchestrated through a unified multi-provider AI routing layer.',
+              'Admins can route any AI category (chat, medical, vision, nutrition) to any provider (Groq, Google Gemma 4, OpenAI, Anthropic) with zero code changes. Users can even bring their own API keys (BYOK). The result is a health companion that adapts to your context, your mood, and your clinical needs.'
+            ],
+            highlights: [
+              { label: 'Unified AI Routing', value: 'Admin-configurable per-category routing across 7 AI providers', icon: 'hub' },
+              { label: 'Gemma 4 Integration', value: 'Google\'s latest open model — 31B Dense + 26B MoE, 256K context, native vision', icon: 'visibility' },
+              { label: '14 AI Companions', value: 'Specialized animal buddies with 3D animations that adapt to user mood', icon: 'pets' },
+              { label: 'Deep Gamification', value: 'XP, levels, streaks, 28 trophies, community challenges with leaderboards', icon: 'emoji_events' }
+            ]
+          }
+        },
+        {
+          id: 'how-it-works',
+          label: 'How It Works',
+          icon: 'account_tree',
+          content: {
+            heading: 'From Wearable Data to Clinical-Grade Insight in Real Time',
+            paragraphs: [
+              'Here\'s how Wellby turns raw wearable data and user input into personalized, intelligent health outcomes:'
+            ],
+            steps: [
+              { step: 1, title: 'Wearable & Manual Ingestion', description: 'Connect Apple Watch, Fitbit, or Garmin — or use the built-in simulator. Heart rate, SpO2, HRV, BP, temperature, and respiratory rate stream in real time. Apple Health XML import is also supported.' },
+              { step: 2, title: 'Client-Side Anomaly Detection', description: 'TensorFlow.js runs Z-score + IQR statistical analysis directly in the browser with zero server latency, flagging deviations across 7 vital signs with 4 severity levels.' },
+              { step: 3, title: 'AI Symptom Triage', description: 'Describe a symptom and the Medical RAG layer retrieves relevant medical knowledge, then an LLM returns a severity assessment (non-urgent → emergency) with confidence scoring and red-flag detection.' },
+              { step: 4, title: 'Multi-Modal Nutrition Analysis', description: 'Photograph a meal, a nutrition label, or a restaurant menu. Vision AI identifies foods, estimates portions, extracts macros, and offers pre-meal coaching based on your daily goals.' },
+              { step: 5, title: 'Gamified Adherence', description: 'Every interaction rewards XP, unlocks trophies, or extends streaks. 14 AI companions adapt to your mood, and community challenges create social accountability.' }
+            ]
+          }
+        },
+        {
+          id: 'features',
+          label: 'Key Features',
+          icon: 'star',
+          content: {
+            heading: 'What Makes Wellby Different',
+            paragraphs: [
+              'Wellby is an enterprise-grade health platform with 110+ API endpoints, 120+ React components, and 21 database models — spanning medical AI, nutrition, fitness, mental wellness, and gamification.'
+            ],
+            highlights: [
+              { label: 'AI Symptom Triage', value: 'Severity classification with urgency routing and red-flag detection', icon: 'emergency' },
+              { label: 'Drug Interaction Checker', value: '200+ drug database with major/moderate/minor severity classification', icon: 'medication' },
+              { label: 'Medical RAG Knowledge Base', value: 'Vector-embedded retrieval for context-aware clinical responses', icon: 'library_books' },
+              { label: 'AI Meal Scanner', value: 'Vision-powered food recognition, portion estimation, and macro extraction', icon: 'restaurant' },
+              { label: 'Menu & Label Scanner', value: 'Photograph restaurant menus or nutrition labels for instant breakdown', icon: 'menu_book' },
+              { label: 'Real-Time Vital Monitoring', value: 'Heart rate, SpO2, HRV, BP, temperature, respiratory rate with live charts', icon: 'monitor_heart' },
+              { label: 'Anomaly Detection (TF.js)', value: 'Z-score + IQR statistical analysis with configurable sensitivity — client side', icon: 'insights' },
+              { label: 'AI Health Reports', value: 'Comprehensive reports analyzing vitals, trends, anomalies, and risk factors', icon: 'assessment' },
+              { label: 'Wearable Integration', value: 'Apple Watch, Fitbit, Garmin, and Apple Health XML import', icon: 'watch' },
+              { label: '14 AI Companions', value: 'Fitness dog, nutrition lion, sleep cat, mindfulness panda, and more — with 3D animations', icon: 'pets' },
+              { label: 'Gamification System', value: 'XP, levels, streaks, 28 trophies, community challenges, leaderboards', icon: 'leaderboard' },
+              { label: 'BYOK + Premium Tier', value: 'Bring your own API key or upgrade via Stripe for AI health reports', icon: 'key' }
+            ]
+          }
+        },
+        {
+          id: 'tech-deep-dive',
+          label: 'Under the Hood',
+          icon: 'engineering',
+          content: {
+            heading: 'Technical Architecture & Decisions',
+            paragraphs: [
+              'The backend is an Express + Prisma server exposing 110+ REST endpoints backed by 21 database models. A unified AI model routing layer abstracts over Groq, Google Gemma 4 (31B Dense + 26B MoE, 256K context, Apache 2.0), OpenAI, and Anthropic — admins remap any category (chat, medical, vision, nutrition) to any provider with zero code changes.',
+              'The frontend is React 19 + TypeScript 5.8 compiled as a progressive web app, with 120+ components, real-time vital streaming, and TensorFlow.js anomaly detection running entirely client-side to eliminate server latency on critical signals.',
+              'Security is HIPAA-aligned with end-to-end encryption, SOC 2-ready audit logging, and Stripe-based premium tier. Deployment runs on GCP Cloud Run with auto-scaling containers.'
+            ],
+            highlights: [
+              { label: 'Express + Prisma', value: '110+ REST endpoints, 21 DB models, type-safe DB access', icon: 'api' },
+              { label: 'Multi-Provider AI Router', value: 'Groq / Gemma 4 / OpenAI / Anthropic with admin-configurable routing', icon: 'alt_route' },
+              { label: 'TensorFlow.js Client-Side ML', value: 'Real-time anomaly detection with zero server latency', icon: 'bolt' },
+              { label: 'GCP Cloud Run', value: 'Auto-scaling serverless containers with HIPAA-aligned encryption', icon: 'cloud' }
+            ]
+          }
+        },
+        {
+          id: 'results',
+          label: 'Results',
+          icon: 'emoji_events',
+          content: {
+            heading: 'Impact & Outcomes',
+            paragraphs: [
+              'Wellby proves that clinical-grade AI, consumer-grade UX, and deep gamification can coexist in a single platform — setting a new bar for what a health companion can do when modern LLMs, vision models, and on-device ML come together.'
+            ],
+            highlights: [
+              { label: '110+ API Endpoints', value: 'Spanning medical, nutrition, fitness, wellness, gamification, and admin', icon: 'api' },
+              { label: '120+ React Components', value: 'Full PWA with responsive layouts, 3D companions, and real-time charts', icon: 'widgets' },
+              { label: 'Zero-Latency Anomaly Detection', value: 'Client-side TF.js avoids round trips on time-sensitive vitals', icon: 'speed' },
+              { label: 'Enterprise-Ready Security', value: 'HIPAA-aligned encryption, SOC 2-ready audit logs, Stripe billing', icon: 'shield' }
+            ]
+          }
+        }
+      ]
+    }
   }
 ];
 

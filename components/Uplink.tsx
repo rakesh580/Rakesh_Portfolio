@@ -45,8 +45,6 @@ const Uplink: React.FC = () => {
               <br />
               &nbsp;&nbsp;"status": "Available for Full-Stack Python & AI Roles",
               <br />
-              &nbsp;&nbsp;"location": "Charlotte, NC",
-              <br />
               &nbsp;&nbsp;"interests": ["Python Full Stack Development", "API Design", "SaaS Integration", "SSO/SAML", "Federated Learning"]
               <br />
               {`}`}

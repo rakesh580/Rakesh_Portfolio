@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
 
         <p className="text-gray-400 text-lg md:text-xl font-light max-w-3xl leading-relaxed">
           <span className="text-white font-bold">Rakesh Chintanippu.</span> Software Engineer @ <span className="text-mint">Cruxito Tech Solutions</span>. 
-          Specializing in Full Stack Development, Cloud-Native Microservices and Real-time GenAI Applications. Based in Charlotte, NC.
+          Specializing in Full Stack Development, Cloud-Native Microservices and Real-time GenAI Applications.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 mt-8">

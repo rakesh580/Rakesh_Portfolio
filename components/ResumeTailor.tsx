@@ -36,7 +36,7 @@ JOB DESCRIPTION: ${jd}
 
 Return ONLY a valid JSON object (no markdown, no code fences) with exactly these keys:
 1. "relevantSkills": String array of technical keywords from the JD that Rakesh possesses.
-2. "projectScores": Object mapping project IDs ("weather-ai", "rchat", "edgeticker") to a match percentage (0-100) based on relevance to the JD.
+2. "projectScores": Object mapping project IDs ("wellby", "weather-ai", "rchat", "edgeticker", "collective-brain") to a match percentage (0-100) based on relevance to the JD.
 3. "summary": A 2-sentence explanation of why Rakesh is a fit for this specific role.`;
 
       const controller = new AbortController();
