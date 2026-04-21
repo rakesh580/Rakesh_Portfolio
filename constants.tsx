@@ -79,7 +79,7 @@ export const PROJECTS: Project[] = [
           content: {
             heading: 'SkyPulse, A Full-Stack Weather Intelligence Platform',
             paragraphs: [
-              'SkyPulse combines real-time weather data from OpenWeatherMap with Meta\'s LLaMA 3.3 70B to create a platform that goes far beyond forecasts, it optimizes your activities, tracks your health patterns, plans your routes, and detects weather anomalies.',
+              'SkyPulse combines real-time weather data from OpenWeatherMap with Meta\'s LLaMA 3.3 70B to create a platform that goes far beyond forecasts. It optimizes your activities, tracks your health patterns, plans your routes, and detects weather anomalies.',
               'It calculates a Comfort Score (0-100), recommends clothing, analyzes microclimates (elevation, urban heat islands, water proximity), plans weather-safe delivery routes, and lets you chat with an AI that knows your exact local conditions.'
             ],
             highlights: [
@@ -115,7 +115,7 @@ export const PROJECTS: Project[] = [
           content: {
             heading: 'What Makes SkyPulse Different',
             paragraphs: [
-              'SkyPulse isn\'t just another weather app · it\'s a full-stack intelligence platform with 20+ API endpoints, 16 component directories, and premium UX that makes weather data personal and actionable.'
+              'SkyPulse isn\'t just another weather app. It\'s a full-stack intelligence platform with 20+ API endpoints, 16 component directories, and premium UX that makes weather data personal and actionable.'
             ],
             highlights: [
               { label: 'Activity Optimizer', value: 'AI-powered activity recommendations scored by weather suitability', icon: 'fitness_center' },
@@ -400,7 +400,7 @@ export const PROJECTS: Project[] = [
           content: {
             heading: 'Team Knowledge is Scattered and Siloed',
             paragraphs: [
-              'Every team generates knowledge across dozens of channels, Git repos, Markdown docs, PDFs, Slack threads, Discord messages, and shared documents. But this knowledge lives in silos. When someone has a question, they either interrupt the right person or spend hours searching across platforms.',
+              'Every team generates knowledge across dozens of channels: Git repos, Markdown docs, PDFs, Slack threads, Discord messages, and shared documents. But this knowledge lives in silos. When someone has a question, they either interrupt the right person or spend hours searching across platforms.',
               'There\'s no single place to search everything, no way to ask natural-language questions across all sources, and no visibility into who on the team actually knows what.'
             ],
             highlights: [
@@ -545,14 +545,14 @@ export const PROJECTS: Project[] = [
           content: {
             heading: 'Health Tracking Is Fragmented and Un-Intelligent',
             paragraphs: [
-              'The average health-conscious person juggles 5+ apps, one for vitals, another for nutrition, a third for workouts, a symptom checker, and a medication reminder. None of them talk to each other, and none bring an intelligent AI layer that understands your full context.',
+              'The average health-conscious person juggles 5+ apps: one for vitals, another for nutrition, a third for workouts, a symptom checker, and a medication reminder. None of them talk to each other, and none bring an intelligent AI layer that understands your full context.',
               'Meanwhile, real medical decisions demand nuance: is this chest pain a red flag? Does this new medication interact with my current prescription? Which of these restaurant menu items fits my calorie budget? Most consumer apps can\'t answer these questions with clinical rigor.'
             ],
             highlights: [
               { label: 'App Fragmentation', value: 'Users juggle 5+ disconnected apps for vitals, nutrition, triage, and fitness', icon: 'apps' },
               { label: 'No Clinical Reasoning', value: 'Consumer apps lack triage, drug interaction, and medical RAG capabilities', icon: 'medical_information' },
               { label: 'No Adherence Mechanism', value: 'Health habits fail without gamification, companions, or real engagement', icon: 'psychology' },
-              { label: 'No Vision Intelligence', value: 'Users manually log meals · impossible to sustain at scale', icon: 'photo_camera' }
+              { label: 'No Vision Intelligence', value: 'Users manually log meals; impossible to sustain at scale', icon: 'photo_camera' }
             ]
           }
         },
