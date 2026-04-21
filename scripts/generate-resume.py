@@ -5,11 +5,11 @@ Design goals (ATS first, visual polish second):
   - Single-column primary flow so parsers read top-to-bottom predictably.
   - Standard section names ("PROFESSIONAL SUMMARY", "TECHNICAL SKILLS",
     "PROFESSIONAL EXPERIENCE", "PROJECTS", "EDUCATION", "AWARDS &
-    PUBLICATIONS") — no prefixes or decorative characters that confuse parsers.
+    PUBLICATIONS); no prefixes or decorative characters that confuse parsers.
   - Standard '•' bullets (U+2022) which every ATS recognises.
-  - Standard separators: '|' in the contact line, em-dashes for ranges.
-  - No running headers/footers — ATS tools often strip or duplicate them.
-  - Embedded core fonts (Helvetica) — no web-font dependencies.
+  - Standard separators: '|' in the contact line, hyphens for ranges.
+  - No running headers/footers; ATS tools often strip or duplicate them.
+  - Embedded core fonts (Helvetica); no web-font dependencies.
   - Plain text links (visible URLs) alongside hyperlinks so text-extraction
     tools that ignore link annotations still get the URL.
 
@@ -103,7 +103,7 @@ def rule():
 
 
 def bullet(text):
-    # Standard U+2022 bullet — universal ATS support.
+    # Standard U+2022 bullet; universal ATS support.
     return Paragraph(f'• {text}', BULLET)
 
 
@@ -140,7 +140,7 @@ def build():
         rightMargin=0.6 * inch,
         topMargin=0.5 * inch,
         bottomMargin=0.5 * inch,
-        title='Rakesh Chintanippu — Resume',
+        title='Rakesh Chintanippu Resume',
         author='Rakesh Chintanippu',
         subject='Full-Stack Engineer, AI Platforms, Cloud-Native Microservices',
         keywords='Full-Stack Engineer, AI Engineer, Python, FastAPI, React, TypeScript, LLM, RAG, LangGraph, AWS, GCP, Docker, Kubernetes, Microservices',
@@ -150,7 +150,7 @@ def build():
         doc.width, doc.height, id='frame',
         leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0,
     )
-    # No running header / footer — ATS parsers sometimes duplicate or garble those.
+    # No running header / footer; ATS parsers sometimes duplicate or garble those.
     doc.addPageTemplates([PageTemplate(id='main', frames=[frame])])
 
     story = []

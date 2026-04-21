@@ -43,7 +43,7 @@ This portfolio is more than a static resume site. It's an interactive, AI-enhanc
 - **Explore detailed case studies** for each project with step-by-step walkthroughs, architecture breakdowns, and technical deep dives
 - **View live demos** of deployed projects directly from the portfolio
 
-Built with a cyber/futuristic design language — glassmorphism panels, monospace typography, mint-green accent system, and ambient background effects.
+Built with a cyber/futuristic design language, glassmorphism panels, monospace typography, mint-green accent system, and ambient background effects.
 
 ---
 
@@ -68,13 +68,13 @@ Interactive project cards in a 2-column grid layout. Each card shows:
 
 ### Interactive Case Studies
 Full-screen modal with tabbed navigation for each project. Sections include:
-- **The Problem** — What gap the project fills, with highlight cards
-- **The Solution** — How the project solves it, with key differentiators
-- **How It Works** — Step-by-step walkthrough with numbered steps (written for non-technical readers)
-- **Key Features** — Grid of feature cards with icons and descriptions
-- **Signal Logic** (EdgeTicker only) — Detailed breakdown of BUY/HOLD/AVOID signal system
-- **Under the Hood** — Technical architecture, design decisions, and tech choices
-- **Results** — Impact metrics and outcomes
+- **The Problem**, What gap the project fills, with highlight cards
+- **The Solution**, How the project solves it, with key differentiators
+- **How It Works**, Step-by-step walkthrough with numbered steps (written for non-technical readers)
+- **Key Features**, Grid of feature cards with icons and descriptions
+- **Signal Logic** (EdgeTicker only), Detailed breakdown of BUY/HOLD/AVOID signal system
+- **Under the Hood**, Technical architecture, design decisions, and tech choices
+- **Results** · Impact metrics and outcomes
 
 Case studies are accessible from both the Cortex (Skill Map) section and the Lab section.
 
@@ -124,20 +124,20 @@ Contact section with links to GitHub, LinkedIn, email, and other social profiles
 
 ```
 rakesh-portfolio/
-├── App.tsx                          # Root app — section routing, intersection observer, case study state
+├── App.tsx                          # Root app, section routing, intersection observer, case study state
 ├── index.tsx                        # Entry point
 ├── constants.tsx                    # Project data, timeline data, and case study content
 ├── types.ts                         # TypeScript interfaces (Project, CaseStudy, MatchData, etc.)
 ├── index.css                        # Global styles, Tailwind directives, custom scrollbar, glass-panel
-├── vite.config.ts                   # Vite config — API key injection, base path, aliases
+├── vite.config.ts                   # Vite config, API key injection, base path, aliases
 ├── .env.local                       # Local environment variables (not committed)
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml               # GitHub Actions — build + deploy to GitHub Pages
+│       └── deploy.yml               # GitHub Actions, build + deploy to GitHub Pages
 ├── components/
 │   ├── Header.tsx                   # Fixed navigation with section highlighting
 │   ├── Hero.tsx                     # Landing section with typewriter animation
-│   ├── Cortex.tsx                   # Skill Map — project cards with hover overlays and match scoring
+│   ├── Cortex.tsx                   # Skill Map, project cards with hover overlays and match scoring
 │   ├── ResumeTailor.tsx             # AI-powered JD analysis panel (Groq API)
 │   ├── NexusAgent.tsx               # Floating AI chatbot with project knowledge (Groq API)
 │   ├── CaseStudyModal.tsx           # Full-screen tabbed case study viewer
@@ -198,7 +198,7 @@ Vite's `define` plugin replaces `process.env.API_KEY` with the literal API key s
 
 1. The key is read from `.env.local` (locally) or from GitHub Secrets (in CI/CD)
 2. Vite bakes it directly into the JavaScript bundle during `npm run build`
-3. At runtime, the browser uses the embedded string — no server-side environment needed
+3. At runtime, the browser uses the embedded string, no server-side environment needed
 
 This is standard for static sites deployed to GitHub Pages, Netlify, or Vercel.
 
@@ -220,7 +220,7 @@ Push to main → npm ci → Create .env.local from secret → npm run build → 
 1. Go to your repo's **Settings > Secrets and variables > Actions**
 2. Add a repository secret: `GROQ_API_KEY` = your Groq API key
 3. Go to **Settings > Pages** and set Source to **GitHub Actions**
-4. Push to `main` — the site will deploy to `https://<username>.github.io/Rakesh_Portfolio/`
+4. Push to `main`, the site will deploy to `https://<username>.github.io/Rakesh_Portfolio/`
 
 ### Other Hosting (Vercel, Netlify, etc.)
 
@@ -240,11 +240,11 @@ npm run build
 User's Browser
     │
     ├── React App (Vite-built static bundle)
-    │   ├── Cortex — Project cards with match scoring
-    │   ├── Lab — Project showcase with architecture modals
-    │   ├── CaseStudyModal — Tabbed case study viewer
-    │   ├── ResumeTailor — JD analysis (calls Groq API)
-    │   └── NexusAgent — AI chatbot (calls Groq API)
+    │   ├── Cortex, Project cards with match scoring
+    │   ├── Lab, Project showcase with architecture modals
+    │   ├── CaseStudyModal · Tabbed case study viewer
+    │   ├── ResumeTailor · JD analysis (calls Groq API)
+    │   └── NexusAgent · AI chatbot (calls Groq API)
     │
     └── External APIs
         └── Groq API (LLaMA-3.3-70B)
@@ -257,7 +257,7 @@ User's Browser
 | Decision | Rationale |
 |----------|-----------|
 | **Groq API over OpenAI** | Free tier, fast inference (~1s), supports LLaMA-3.3-70B |
-| **Vite `define` for API key** | Bakes key at build time — no backend needed for static hosting |
+| **Vite `define` for API key** | Bakes key at build time, no backend needed for static hosting |
 | **Shared CaseStudyModal** | Single modal component used by both Cortex and Lab via App-level state |
 | **Case study data in constants.tsx** | Keeps all project content co-located and type-safe |
 | **Tailwind + custom CSS** | Utility classes for layout, custom properties for the cyber theme |
@@ -284,8 +284,8 @@ App
 
 | Branch | Description |
 |--------|-------------|
-| `main` | Latest development version — auto-deploys to GitHub Pages |
-| `stable` | Last known stable release — safe fallback point |
+| `main` | Latest development version · auto-deploys to GitHub Pages |
+| `stable` | Last known stable release · safe fallback point |
 
 ---
 

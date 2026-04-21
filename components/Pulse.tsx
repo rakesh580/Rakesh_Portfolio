@@ -2,7 +2,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
 /**
- * THE_PULSE — fully custom, terminal-themed live GitHub panel.
+ * THE_PULSE, fully custom, terminal-themed live GitHub panel.
  *
  * Data comes from three GitHub REST endpoints batched on mount and cached
  * in localStorage for 1 hour. Total cost per visitor per hour: ~7 calls,
@@ -323,7 +323,7 @@ const Pulse: React.FC = () => {
             <div className="size-2 rounded-full bg-green-500/50" />
           </div>
           <div className="text-[10px] font-mono text-gray-500">
-            pulse-terminal — gh api /users/{GH_USER}
+            pulse-terminal · gh api /users/{GH_USER}
           </div>
           <div className="w-10" />
         </div>
@@ -370,7 +370,7 @@ const Pulse: React.FC = () => {
                     latest_push
                   </div>
                   <div className="text-sm font-mono text-white">
-                    {data.latestRepo ? relativeTime(data.latestRepo.pushed_at) : '—'}
+                    {data.latestRepo ? relativeTime(data.latestRepo.pushed_at) : ', '}
                   </div>
                 </div>
                 <div className="p-4 border border-white/10 rounded-sm bg-void/40">
@@ -380,7 +380,7 @@ const Pulse: React.FC = () => {
                   <div className="text-sm font-mono text-white truncate">
                     {data.stats.topRepo
                       ? `${data.stats.topRepo.name}  ★${data.stats.topRepo.stars}`
-                      : '—'}
+                      : ', '}
                   </div>
                 </div>
               </div>
@@ -479,7 +479,7 @@ const Pulse: React.FC = () => {
           )}
           {error && !data?.events.length && !loading && (
             <div className="px-6 py-10 text-center text-[11px] font-mono text-gray-500">
-              GitHub API throttled — try again in a few minutes.
+              GitHub API throttled, try again in a few minutes.
             </div>
           )}
           {!loading && !error && data && data.events.length === 0 && (

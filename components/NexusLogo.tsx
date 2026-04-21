@@ -2,7 +2,7 @@
 import React from 'react';
 
 /**
- * Custom brand mark for NexusAgent — a stylised terminal prompt (">_").
+ * Custom brand mark for NexusAgent, a stylised terminal prompt (">_").
  *
  * Variants:
  *  - `idle`     : static chevron + slowly-breathing pulse ring (resting state)
@@ -18,7 +18,7 @@ interface NexusLogoProps {
   variant?: Variant;
   size?: number;                 // px, defaults to inherit from parent
   className?: string;
-  withPulseRing?: boolean;       // outer animated ring — default true for floating button
+  withPulseRing?: boolean;       // outer animated ring, default true for floating button
 }
 
 const NexusLogo: React.FC<NexusLogoProps> = ({
@@ -42,7 +42,7 @@ const NexusLogo: React.FC<NexusLogoProps> = ({
       className={className}
       aria-hidden="true"
     >
-      {/* Outer pulse rings — only drawn on the floating button */}
+      {/* Outer pulse rings, only drawn on the floating button */}
       {withPulseRing && (
         <g className={ringOpacity}>
           <circle

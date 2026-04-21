@@ -20,7 +20,7 @@ const ArchitectureDiagram: React.FC<DiagramProps> = ({ nodes, edges }) => {
   };
 
   const ariaSummary = nodes.map(n => n.label).join(', ') +
-    (edges.length ? ' — connected by ' + edges.map(e => e.label || `${e.from}→${e.to}`).join(', ') : '');
+    (edges.length ? ', connected by ' + edges.map(e => e.label || `${e.from}→${e.to}`).join(', ') : '');
 
   return (
     <div className="relative w-full h-full min-h-[400px] bg-void/40 overflow-visible p-8">
@@ -30,7 +30,7 @@ const ArchitectureDiagram: React.FC<DiagramProps> = ({ nodes, edges }) => {
         viewBox="0 0 600 350"
         className="overflow-visible"
         role="img"
-        aria-label={`System architecture diagram — ${ariaSummary}`}
+        aria-label={`System architecture diagram · ${ariaSummary}`}
       >
         <defs>
           <marker

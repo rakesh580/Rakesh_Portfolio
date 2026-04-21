@@ -46,7 +46,7 @@ const Lab: React.FC<LabProps> = ({ onOpenCaseStudy }) => {
             <div className="relative aspect-video overflow-hidden">
               <img
                 src={project.image}
-                alt={`${project.title} — ${project.mission}`}
+                alt={`${project.title}, ${project.mission}`}
                 loading="lazy"
                 decoding="async"
                 className="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 scale-100 group-hover:scale-105"
