@@ -43,10 +43,8 @@ const Cortex: React.FC<CortexProps> = ({ matchData, onOpenCaseStudy }) => {
         )}
 
         <p className="text-gray-400 text-lg max-w-3xl leading-relaxed">
-          I am a Software Engineer with a primary focus on <span className="text-white">Android and mobile development</span>, building production-grade applications that serve large-scale user bases. Professionally I work with <span className="text-mint">Kotlin</span> and <span className="text-mint">Jetpack Compose</span>, designing clean MVVM architectures, integrating RESTful APIs, and delivering mobile experiences that hold up under real pressure. One of the platforms I worked on served over a million active users across Android and iOS, where I contributed to reducing crash rates by 40 percent and maintaining 85 percent code coverage.
-        </p>
-        <p className="text-gray-400 text-lg max-w-3xl leading-relaxed">
-          Outside of professional mobile work, I explore full-stack and AI engineering as a personal passion — building LLM-powered platforms, RAG pipelines, and real-time backend services.
+          Skills visualized through actual production delivery. I measure success by 
+          <span className="text-white"> reliability, latency, and scale</span>, not abstract percentages.
         </p>
       </div>
 
@@ -149,45 +147,28 @@ const Cortex: React.FC<CortexProps> = ({ matchData, onOpenCaseStudy }) => {
           );
         })}
 
-        {/* Tech Stack Card */}
-        <div className="glass-panel rounded-md border border-white/5 p-8 flex flex-col justify-center gap-6 bg-mint/5">
-           <div className="text-[10px] font-mono text-mint uppercase tracking-[0.3em] font-bold">TECH_STACK</div>
-           <div className="space-y-5">
-              <div className="space-y-2">
-                <div className="text-xs font-mono text-white font-bold uppercase tracking-widest">Primary — Mobile</div>
-                <div className="flex flex-wrap gap-1.5">
-                  {['Kotlin', 'Jetpack Compose', 'Android SDK', 'MVVM', 'Coroutines', 'StateFlow', 'Retrofit', 'Room', 'Hilt', 'Swift', 'SwiftUI'].map(s => (
-                    <span key={s} className="px-2 py-1 bg-mint/10 border border-mint/20 text-[10px] font-mono text-mint rounded-sm">{s}</span>
-                  ))}
-                </div>
+        {/* Aggregate Stats Card */}
+        <div className="glass-panel rounded-md border border-white/5 p-8 flex flex-col justify-center gap-8 bg-mint/5">
+           <div className="grid grid-cols-2 gap-8">
+              <div className="space-y-1">
+                <div className="text-4xl font-bold text-white tracking-tighter">30%</div>
+                <div className="text-[10px] font-mono text-mint uppercase tracking-widest">Reliability Boost</div>
               </div>
-              <div className="space-y-2">
-                <div className="text-xs font-mono text-white font-bold uppercase tracking-widest">Secondary — Full-Stack &amp; AI (Personal)</div>
-                <div className="flex flex-wrap gap-1.5">
-                  {['Python', 'FastAPI', 'React', 'TypeScript', 'LangChain', 'RAG', 'ChromaDB', 'WebSockets', 'Redis', 'PostgreSQL'].map(s => (
-                    <span key={s} className="px-2 py-1 bg-white/5 border border-white/10 text-[10px] font-mono text-white/60 rounded-sm">{s}</span>
-                  ))}
-                </div>
+              <div className="space-y-1">
+                <div className="text-4xl font-bold text-white tracking-tighter">5K+</div>
+                <div className="text-[10px] font-mono text-mint uppercase tracking-widest">Concurrent Users</div>
               </div>
-              <div className="space-y-2">
-                <div className="text-xs font-mono text-white font-bold uppercase tracking-widest">DevOps &amp; Cloud</div>
-                <div className="flex flex-wrap gap-1.5">
-                  {['AWS', 'Docker', 'GitHub Actions', 'Jenkins', 'Git', 'Firebase', 'Crashlytics'].map(s => (
-                    <span key={s} className="px-2 py-1 bg-white/5 border border-white/10 text-[10px] font-mono text-white/60 rounded-sm">{s}</span>
-                  ))}
-                </div>
+              <div className="space-y-1">
+                <div className="text-4xl font-bold text-white tracking-tighter">15+</div>
+                <div className="text-[10px] font-mono text-mint uppercase tracking-widest">Client Successes</div>
               </div>
-              <div className="space-y-2">
-                <div className="text-xs font-mono text-white font-bold uppercase tracking-widest">Testing</div>
-                <div className="flex flex-wrap gap-1.5">
-                  {['JUnit', 'Espresso', 'MockK', 'Turbine', 'XCTest', 'XCUITest'].map(s => (
-                    <span key={s} className="px-2 py-1 bg-white/5 border border-white/10 text-[10px] font-mono text-white/60 rounded-sm">{s}</span>
-                  ))}
-                </div>
+              <div className="space-y-1">
+                <div className="text-4xl font-bold text-white tracking-tighter">3.9</div>
+                <div className="text-[10px] font-mono text-mint uppercase tracking-widest">Academic GPA</div>
               </div>
            </div>
            <p className="text-gray-400 text-sm italic font-mono">
-              "Mobile-first engineering. Production-grade delivery."
+              "Code like you train: Precision, Resilience, and High-Impact Delivery."
            </p>
         </div>
       </div>
