@@ -457,7 +457,11 @@ const Pulse: React.FC = () => {
         </a>
       )}
 
-      {/* Recent Activity */}
+      {/*
+        Recent Activity — temporarily hidden. Re-enable when the commit
+        feed is dense enough to feel signal-heavy (per user request,
+        keeping the code so we can restore without re-writing).
+
       <div className="glass-panel rounded-md border-white/10 overflow-hidden">
         <div className="h-10 bg-white/5 border-b border-white/10 flex items-center px-4 justify-between">
           <div className="flex items-center gap-2">
@@ -513,6 +517,8 @@ const Pulse: React.FC = () => {
           })}
         </div>
       </div>
+
+      */}
     </div>
   );
 };
