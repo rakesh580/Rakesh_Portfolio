@@ -13,10 +13,78 @@ import CaseStudyModal from './components/CaseStudyModal';
 import { PROJECTS } from './constants';
 import { MatchData, Project } from './types';
 
+const useCustomCursor = () => {
+  useEffect(() => {
+    const dot = document.createElement('div');
+    const ring = document.createElement('div');
+    dot.className = 'cursor-dot';
+    ring.className = 'cursor-ring';
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+
+    const onMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.left = `${mouseX}px`;
+      dot.style.top = `${mouseY}px`;
+    };
+
+    const onMouseDown = () => { dot.classList.add('clicking'); ring.classList.add('clicking'); };
+    const onMouseUp = () => { dot.classList.remove('clicking'); ring.classList.remove('clicking'); };
+
+    const onMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest('a, button, [role="button"], input, textarea, select, [onclick]')) {
+        dot.classList.add('hovering');
+        ring.classList.add('hovering');
+      }
+    };
+    const onMouseOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest('a, button, [role="button"], input, textarea, select, [onclick]')) {
+        dot.classList.remove('hovering');
+        ring.classList.remove('hovering');
+      }
+    };
+
+    let rafId: number;
+    const animate = () => {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      ring.style.left = `${ringX}px`;
+      ring.style.top = `${ringY}px`;
+      rafId = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('mouseover', onMouseOver);
+    document.addEventListener('mouseout', onMouseOut);
+    rafId = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mousedown', onMouseDown);
+      window.removeEventListener('mouseup', onMouseUp);
+      document.removeEventListener('mouseover', onMouseOver);
+      document.removeEventListener('mouseout', onMouseOut);
+      cancelAnimationFrame(rafId);
+      dot.remove();
+      ring.remove();
+    };
+  }, []);
+};
+
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('nexus');
   const [matchData, setMatchData] = useState<MatchData | null>(null);
   const [caseStudyProject, setCaseStudyProject] = useState<Project | null>(null);
+
+  useCustomCursor();
 
   const openCaseStudy = useCallback((projectId: string) => {
     const project = PROJECTS.find(p => p.id === projectId);
