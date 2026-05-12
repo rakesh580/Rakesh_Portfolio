@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { MatchData } from '../types';
-import { PROJECTS, TIMELINE, CONTACT } from '../constants';
+import { PROJECTS, TIMELINE, CONTACT, OSS_CONTRIBUTIONS } from '../constants';
 import NexusLogo from './NexusLogo';
 
 // ───────────────────────────────────────────────────────────────────────────
@@ -31,6 +31,10 @@ const buildSystemPrompt = (matchData?: MatchData | null): string => {
 
   const timelineBlock = TIMELINE.map(t =>
     `- ${t.period} · ${t.role} at ${t.company}${t.location ? ` (${t.location})` : ''}: ${t.description}`
+  ).join('\n');
+
+  const ossBlock = OSS_CONTRIBUTIONS.map(c =>
+    `- [${c.status}] ${c.repo} PR #${c.prNumber} (${c.prUrl}) · ${c.repoStars} stars · merged ${c.mergedDate || 'recently'} by ${c.reviewer || 'maintainer'}. ${c.tagline} Closed issue #${c.issueNumber || 'n/a'}.`
   ).join('\n');
 
   const matchHint = matchData
@@ -75,6 +79,9 @@ ${timelineBlock}
 
 PROJECTS (${PROJECTS.length} flagship case studies)
 ${projectsBlock}
+
+OPEN SOURCE CONTRIBUTIONS (${OSS_CONTRIBUTIONS.length} merged)
+${ossBlock}
 
 CORE TECH STACK
 - Languages: Python, TypeScript, JavaScript, Java, Go, SQL, C#
@@ -139,6 +146,12 @@ const offlineReply = (msg: string): string => {
   }
   if (hit('resume', 'cv', 'pdf', 'download')) {
     return "Hit the DOWNLOAD_RESUME button in THE_UPLINK section at the bottom of the page.";
+  }
+  if (hit('open source', 'oss', 'contribution', 'camel', 'merged pr', 'pull request')) {
+    const oss = OSS_CONTRIBUTIONS[0];
+    if (oss) {
+      return `${oss.repo} (${oss.repoStars} stars) — PR #${oss.prNumber} merged ${oss.mergedDate || 'recently'}. ${oss.tagline} Closed issue #${oss.issueNumber || 'n/a'}. ${oss.prUrl}`;
+    }
   }
   if (hit('github', 'code', 'repo')) {
     return `GitHub: ${CONTACT.github}`;

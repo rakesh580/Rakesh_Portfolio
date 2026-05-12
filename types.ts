@@ -70,3 +70,27 @@ export interface MatchData {
   projectScores: Record<string, number>; // Project ID -> Match Score (0-100)
   summary: string;
 }
+
+export interface OssContribution {
+  id: string;
+  status: 'MERGED' | 'OPEN' | 'CLOSED';
+  repo: string;            // e.g. "camel-ai/camel"
+  repoUrl: string;         // canonical repo URL
+  prTitle: string;         // short title for the contribution
+  prNumber: number;
+  prUrl: string;
+  issueNumber?: number;
+  issueUrl?: string;
+  mergedDate?: string;     // ISO month, e.g. "May 2026"
+  reviewer?: string;       // maintainer handle who merged
+  reviewerUrl?: string;
+  repoStars: string;       // e.g. "16k+"
+  tagline: string;         // one-line summary
+  problem: string;
+  solution: string;
+  highlights: string[];
+  tags: string[];          // tech / module tags
+  filesChanged?: number;
+  linesAdded?: number;
+  linesRemoved?: number;
+}

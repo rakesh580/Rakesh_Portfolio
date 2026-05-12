@@ -1,5 +1,5 @@
 
-import { Project, TimelineEvent } from './types';
+import { OssContribution, Project, TimelineEvent } from './types';
 
 /**
  * Single source of truth for contact info. Imported by the Uplink panel,
@@ -656,6 +656,47 @@ export const PROJECTS: Project[] = [
       ]
     }
   }
+];
+
+export const OSS_CONTRIBUTIONS: OssContribution[] = [
+  {
+    id: 'camel-embeddings-decorators',
+    status: 'MERGED',
+    repo: 'camel-ai/camel',
+    repoUrl: 'https://github.com/camel-ai/camel',
+    prTitle: 'Embeddings Module Hardening',
+    prNumber: 3992,
+    prUrl: 'https://github.com/camel-ai/camel/pull/3992',
+    issueNumber: 1043,
+    issueUrl: 'https://github.com/camel-ai/camel/issues/1043',
+    mergedDate: 'May 2026',
+    reviewer: '@fengju0213',
+    reviewerUrl: 'https://github.com/fengju0213',
+    repoStars: '16k+',
+    tagline: 'Standardized dependency-error handling across all nine embedding classes in a 16k+ star multi-agent LLM framework.',
+    problem: 'Missing optional packages (mistralai, google.genai, openai, etc.) threw confusing AttributeError tracebacks deep inside __init__, leaving users guessing what to install.',
+    solution: 'Applied @dependencies_required decorators to every embedding class so users now get a clean ImportError with the exact pip install command. Alphabetized __all__ in __init__.py for consistency.',
+    highlights: [
+      'Closed long-standing developer-experience issue #1043',
+      '9 new unit tests using unittest.mock — one per embedding class',
+      'Example script demonstrating both normal usage and the graceful error path',
+      'Reviewed and merged by maintainer @fengju0213',
+    ],
+    tags: [
+      'OpenAIEmbedding',
+      'AzureEmbedding',
+      'MistralEmbedding',
+      'GeminiEmbedding',
+      'JinaEmbedding',
+      'TogetherEmbedding',
+      'SentenceTransformerEncoder',
+      'VisionLanguageEmbedding',
+      'OpenAICompatibleEmbedding',
+    ],
+    filesChanged: 12,
+    linesAdded: 335,
+    linesRemoved: 13,
+  },
 ];
 
 export const TIMELINE: TimelineEvent[] = [
