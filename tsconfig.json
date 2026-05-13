@@ -9,7 +9,8 @@
     ],
     "skipLibCheck": true,
     "types": [
-      "node"
+      "node",
+      "vite/client"
     ],
     "moduleResolution": "bundler",
     "isolatedModules": true,
@@ -28,7 +29,8 @@
     "*.ts",
     "*.tsx",
     "components/**/*.ts",
-    "components/**/*.tsx"
+    "components/**/*.tsx",
+    "hooks/**/*.ts"
   ],
   "exclude": [
     "node_modules",

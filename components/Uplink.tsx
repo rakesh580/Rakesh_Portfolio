@@ -1,9 +1,11 @@
 
 import React, { useState } from 'react';
 import { CONTACT } from '../constants';
+import { useScrollToSection } from '../hooks/useScrollToSection';
 
 const Uplink: React.FC = () => {
   const [copied, setCopied] = useState(false);
+  const scrollTo = useScrollToSection();
 
   // Vite respects import.meta.env.BASE_URL for GitHub Pages subpath deploys.
   // Falls back to root in dev.
@@ -115,11 +117,7 @@ const Uplink: React.FC = () => {
                   href="#pulse"
                   onClick={(e) => {
                     e.preventDefault();
-                    const el = document.getElementById('pulse');
-                    if (el) {
-                      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-                      window.scrollTo({ top, behavior: 'smooth' });
-                    }
+                    scrollTo('pulse');
                   }}
                   className="flex items-center justify-center gap-3 px-6 py-3 border border-white/10 rounded-sm font-mono font-bold text-xs tracking-widest uppercase text-white hover:border-mint/40 hover:text-mint transition-colors"
                 >

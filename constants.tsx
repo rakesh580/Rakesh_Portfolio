@@ -174,7 +174,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'rchat',
-    title: 'Rchat.ai Platform',
+    title: 'Real-Time AI Chat',
     mission: 'Enabling seamless, secure, low-latency multi-user communication in real-time.',
     description: 'Engineered a real-time AI-powered chat system with message streaming and room management.',
     tech: ['FastAPI', 'React', 'WebSockets', 'PostgreSQL', 'JWT', 'OAuth2'],

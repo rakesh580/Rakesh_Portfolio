@@ -1,11 +1,22 @@
 
 import React, { useState, useEffect } from 'react';
+import { PROJECTS } from '../constants';
+import { useScrollToSection } from '../hooks/useScrollToSection';
 
 const Hero: React.FC = () => {
   const [displayText, setDisplayText] = useState('');
   const fullText = "Constructing Intelligence";
-  
+  const scrollTo = useScrollToSection();
+
   useEffect(() => {
+    // Respect prefers-reduced-motion (WCAG 2.3.3). For users who request
+    // reduced motion, skip the typing animation and show the full text.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      setDisplayText(fullText);
+      return;
+    }
+
     let i = 0;
     const interval = setInterval(() => {
       setDisplayText(fullText.slice(0, i));
@@ -35,29 +46,21 @@ const Hero: React.FC = () => {
 
         <p className="text-gray-400 text-lg md:text-xl font-light max-w-3xl leading-relaxed">
           <span className="text-white font-bold">Rakesh Chintanippu.</span> Software Engineer @ <span className="text-mint">Cruxito Tech Solutions</span>.
-          Building production-grade <span className="text-white">AI platforms</span>, <span className="text-white">real-time systems</span>, and <span className="text-white">cloud-native microservices</span>, with 5+ shipped case studies spanning LLM orchestration, RAG pipelines, and full-stack engineering.
+          Building production-grade <span className="text-white">AI platforms</span>, <span className="text-white">real-time systems</span>, and <span className="text-white">cloud-native microservices</span>, with {PROJECTS.length}+ shipped case studies spanning LLM orchestration, RAG pipelines, and full-stack engineering.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 mt-8">
-          <button onClick={() => {
-            const el = document.getElementById('cortex');
-            if (el) {
-              const offset = 80;
-              const top = el.getBoundingClientRect().top + window.scrollY - offset;
-              window.scrollTo({ top, behavior: 'smooth' });
-            }
-          }} className="h-14 px-10 bg-white text-void font-mono font-bold text-xs tracking-widest uppercase hover:bg-mint transition-colors rounded-sm shadow-xl flex items-center gap-2">
+          <button
+            onClick={() => scrollTo('cortex')}
+            className="h-14 px-10 bg-white text-void font-mono font-bold text-xs tracking-widest uppercase hover:bg-mint transition-colors rounded-sm shadow-xl flex items-center gap-2"
+          >
             View Skill Map
             <span className="material-symbols-outlined text-sm">map</span>
           </button>
-          <button onClick={() => {
-            const el = document.getElementById('uplink');
-            if (el) {
-              const offset = 80;
-              const top = el.getBoundingClientRect().top + window.scrollY - offset;
-              window.scrollTo({ top, behavior: 'smooth' });
-            }
-          }} className="h-14 px-10 border border-white/10 font-mono font-bold text-xs tracking-widest uppercase text-white hover:border-mint/50 transition-colors rounded-sm flex items-center justify-center gap-2">
+          <button
+            onClick={() => scrollTo('uplink')}
+            className="h-14 px-10 border border-white/10 font-mono font-bold text-xs tracking-widest uppercase text-white hover:border-mint/50 transition-colors rounded-sm flex items-center justify-center gap-2"
+          >
             Establish Uplink
             <span className="material-symbols-outlined text-sm">wifi_tethering</span>
           </button>

@@ -126,7 +126,7 @@ const App: React.FC = () => {
 
       <Header activeSection={activeSection} />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10" tabIndex={-1}>
         <section id="nexus">
           <Hero />
         </section>

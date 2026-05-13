@@ -9,6 +9,32 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Skip-to-content link — visually hidden until keyboard focused.
+   Lets sighted keyboard users and screen-reader users jump past the fixed
+   nav directly into the page content. WCAG 2.4.1. */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: #00FF88;
+  color: #0A0A0A;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: top 150ms ease-out;
+}
+.skip-link:focus {
+  top: 1rem;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
 /* Scrollbar Styles */
 ::-webkit-scrollbar {
   width: 8px;

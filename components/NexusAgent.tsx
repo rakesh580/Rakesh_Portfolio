@@ -126,8 +126,8 @@ const offlineReply = (msg: string): string => {
   if (hit('edgeticker', 'stock', 'trading', 'market')) {
     return "EdgeTicker is a stock intelligence platform with backtested BUY/HOLD/AVOID signals, a streaming Market Copilot (Mistral-7B via SSE), multi-timeframe conflict alerts, and watchlist intelligence.";
   }
-  if (hit('rchat', 'chat platform')) {
-    return "Rchat.ai is a real-time AI chat platform with WebSockets, JWT/OAuth2 auth, Redis pub/sub, and PostgreSQL persistence. FastAPI backend, React frontend.";
+  if (hit('rchat', 'chat platform', 'real-time chat', 'real time chat')) {
+    return "Real-Time AI Chat (Rchat.ai) is a real-time AI chat platform with WebSockets, JWT/OAuth2 auth, Redis pub/sub, and PostgreSQL persistence. FastAPI backend, React frontend.";
   }
   if (hit('project', 'built', 'work', 'case study', 'portfolio')) {
     return `He has ${PROJECTS.length} flagship projects: ${PROJECTS.map(p => p.title.split(', ')[0].trim()).join(', ')}. Scroll to THE_CORTEX for full case studies.`;

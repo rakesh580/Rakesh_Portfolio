@@ -8,7 +8,7 @@
     <!-- Primary Meta Tags -->
     <title>Rakesh Chintanippu · Full-Stack Engineer · AI Platforms · Cloud Architecture</title>
     <meta name="title" content="Rakesh Chintanippu · Full-Stack Engineer · AI Platforms · Cloud Architecture" />
-    <meta name="description" content="Software engineer building production-grade AI platforms, real-time systems, and cloud-native microservices. Explore case studies for Wellby, Collective Brain, SkyPulse, EdgeTicker, and Rchat.ai." />
+    <meta name="description" content="Software engineer building production-grade AI platforms, real-time systems, and cloud-native microservices. Case studies span LLM orchestration, RAG pipelines, real-time WebSocket platforms, and merged open-source contributions to popular AI frameworks." />
     <meta name="keywords" content="Rakesh Chintanippu · Full-Stack Engineer, AI Platform Engineer, LLM Engineer, FastAPI, React, Python, LangGraph, RAG, ChromaDB, TypeScript, Cloud Engineer, Software Engineer Portfolio" />
     <meta name="author" content="Rakesh Chintanippu" />
     <link rel="canonical" href="https://rakesh580.github.io/Rakesh_Portfolio/" />
@@ -21,7 +21,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://rakesh580.github.io/Rakesh_Portfolio/" />
     <meta property="og:title" content="Rakesh Chintanippu · Full-Stack Engineer · AI Platforms · Cloud Architecture" />
-    <meta property="og:description" content="Production-grade AI platforms, real-time systems, and cloud-native microservices. 5 case studies including Wellby, Collective Brain, SkyPulse, EdgeTicker, and Rchat.ai." />
+    <meta property="og:description" content="Production-grade AI platforms, real-time systems, and cloud-native microservices. Flagship case studies plus merged open-source contributions to popular AI frameworks." />
     <meta property="og:image" content="https://rakesh580.github.io/Rakesh_Portfolio/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -66,9 +66,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Material Symbols: only the wght axis is actually used (FILL/GRAD/opsz
+         are never set anywhere in this codebase), so the URL is trimmed to a
+         single weight to cut font payload significantly. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400" />
 </head>
 <body class="font-sans overflow-x-hidden">
+    <!-- Skip-to-content link for keyboard-only and screen-reader users.
+         Hidden visually until focused; jumps past the fixed nav directly into
+         the page content. -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
 </body>

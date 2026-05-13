@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { useScrollToSection } from '../hooks/useScrollToSection';
 
 interface HeaderProps {
   activeSection: string;
@@ -7,6 +8,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ activeSection }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const scrollTo = useScrollToSection();
 
   const navItems = [
     { id: 'nexus', label: 'NEXUS' },
@@ -20,21 +22,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     setMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80; // Header height
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-
-      window.history.pushState(null, '', `#${id}`);
-    }
+    scrollTo(id);
   };
 
   // Scroll lock + Esc to close when mobile menu is open
